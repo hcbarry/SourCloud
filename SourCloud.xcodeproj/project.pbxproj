@@ -13,6 +13,10 @@
 		4C66753A25C0740000B68C0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C66753925C0740000B68C0C /* Assets.xcassets */; };
 		4C66753D25C0740000B68C0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C66753B25C0740000B68C0C /* LaunchScreen.storyboard */; };
 		4C66754025C0740000B68C0C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C66753F25C0740000B68C0C /* main.m */; };
+		4C66754A25C0766C00B68C0C /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C66754925C0766C00B68C0C /* libxml2.tbd */; };
+		4C66755025C0779400B68C0C /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C66754C25C0779300B68C0C /* HTMLParser.m */; };
+		4C66755125C0779400B68C0C /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C66754F25C0779300B68C0C /* HTMLNode.m */; };
+		4C66755325C0992F00B68C0C /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C66755225C0992F00B68C0C /* WebKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,12 @@
 		4C66753C25C0740000B68C0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C66753E25C0740000B68C0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C66753F25C0740000B68C0C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4C66754925C0766C00B68C0C /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
+		4C66754C25C0779300B68C0C /* HTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLParser.m; sourceTree = "<group>"; };
+		4C66754D25C0779300B68C0C /* HTMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLNode.h; sourceTree = "<group>"; };
+		4C66754E25C0779300B68C0C /* HTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLParser.h; sourceTree = "<group>"; };
+		4C66754F25C0779300B68C0C /* HTMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLNode.m; sourceTree = "<group>"; };
+		4C66755225C0992F00B68C0C /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +43,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C66755325C0992F00B68C0C /* WebKit.framework in Frameworks */,
+				4C66754A25C0766C00B68C0C /* libxml2.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,7 +55,9 @@
 			isa = PBXGroup;
 			children = (
 				4C66752C25C073FE00B68C0C /* SourCloud */,
+				4C66754B25C0779300B68C0C /* HTMLParser */,
 				4C66752B25C073FE00B68C0C /* Products */,
+				4C66754825C0766C00B68C0C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -69,6 +83,26 @@
 				4C66753F25C0740000B68C0C /* main.m */,
 			);
 			path = SourCloud;
+			sourceTree = "<group>";
+		};
+		4C66754825C0766C00B68C0C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4C66755225C0992F00B68C0C /* WebKit.framework */,
+				4C66754925C0766C00B68C0C /* libxml2.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4C66754B25C0779300B68C0C /* HTMLParser */ = {
+			isa = PBXGroup;
+			children = (
+				4C66754D25C0779300B68C0C /* HTMLNode.h */,
+				4C66754F25C0779300B68C0C /* HTMLNode.m */,
+				4C66754E25C0779300B68C0C /* HTMLParser.h */,
+				4C66754C25C0779300B68C0C /* HTMLParser.m */,
+			);
+			path = HTMLParser;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,7 +175,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C66755125C0779400B68C0C /* HTMLNode.m in Sources */,
 				4C66753525C073FE00B68C0C /* ViewController.m in Sources */,
+				4C66755025C0779400B68C0C /* HTMLParser.m in Sources */,
 				4C66752F25C073FE00B68C0C /* AppDelegate.m in Sources */,
 				4C66754025C0740000B68C0C /* main.m in Sources */,
 			);
@@ -284,6 +320,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = SourCloud/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -301,6 +338,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = SourCloud/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
