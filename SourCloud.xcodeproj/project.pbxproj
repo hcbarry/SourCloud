@@ -17,6 +17,7 @@
 		4C66755025C0779400B68C0C /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C66754C25C0779300B68C0C /* HTMLParser.m */; };
 		4C66755125C0779400B68C0C /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C66754F25C0779300B68C0C /* HTMLNode.m */; };
 		4C66755325C0992F00B68C0C /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C66755225C0992F00B68C0C /* WebKit.framework */; };
+		84E20B7726520D52004775D9 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 84E20B7626520D52004775D9 /* Settings.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		4C66754E25C0779300B68C0C /* HTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLParser.h; sourceTree = "<group>"; };
 		4C66754F25C0779300B68C0C /* HTMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLNode.m; sourceTree = "<group>"; };
 		4C66755225C0992F00B68C0C /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		84E20B7626520D52004775D9 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 				4C66753B25C0740000B68C0C /* LaunchScreen.storyboard */,
 				4C66753E25C0740000B68C0C /* Info.plist */,
 				4C66753F25C0740000B68C0C /* main.m */,
+				84E20B7626520D52004775D9 /* Settings.bundle */,
 			);
 			path = SourCloud;
 			sourceTree = "<group>";
@@ -162,6 +165,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84E20B7726520D52004775D9 /* Settings.bundle in Resources */,
 				4C66753D25C0740000B68C0C /* LaunchScreen.storyboard in Resources */,
 				4C66753A25C0740000B68C0C /* Assets.xcassets in Resources */,
 				4C66753825C073FE00B68C0C /* Main.storyboard in Resources */,
