@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
+        <deployment version="4352" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,17 +16,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Oa1-1F-n8c">
-                                <rect key="frame" x="197" y="443" width="20" height="20"/>
-                            </activityIndicatorView>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kBk-Y6-MoW">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="Oa1-1F-n8c" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="5oj-VL-FFo"/>
-                            <constraint firstItem="Oa1-1F-n8c" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="vwI-E7-xfQ"/>
+                            <constraint firstItem="kBk-Y6-MoW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="J3H-Qj-6r4"/>
+                            <constraint firstAttribute="trailing" secondItem="kBk-Y6-MoW" secondAttribute="trailing" id="XGG-9o-585"/>
+                            <constraint firstAttribute="bottom" secondItem="kBk-Y6-MoW" secondAttribute="bottom" id="by2-77-TDG"/>
+                            <constraint firstItem="kBk-Y6-MoW" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="cnG-Le-btq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="webView" destination="kBk-Y6-MoW" id="PiN-Ug-lIp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
