@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "HTMLParser.h"
+#import <UserNotifications/UserNotifications.h>
 #import <WebKit/WebKit.h>
 
 typedef NS_ENUM(NSUInteger, HTTPMethod) {
@@ -37,7 +38,14 @@ static NSString * const kPasswordKey = @"password_preference";
         [[UIApplication sharedApplication] openURL:URL options:@{} completionHandler:^(BOOL success) {
             exit(0);
         }];
+        return;
     }
+    
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    UNAuthorizationOptions options = UNAuthorizationOptionSound | UNAuthorizationOptionAlert;
+    [center requestAuthorizationWithOptions:options completionHandler:^(BOOL granted, NSError * _Nullable error) {
+        // Do nothing
+    }];
     
     self.webView.UIDelegate = self;
     
@@ -145,18 +153,67 @@ static NSString * const kPasswordKey = @"password_preference";
     return text.copy;
 }
 
-#pragma mark - WKUIDelegate
-
-- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:message
-                                                                             message:nil
+- (void)showAlertWithTitle:(NSString *)title message:(NSString *)message completionHandler:(void (^)(void))completionHandler {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title
+                                                                             message:message
                                                                       preferredStyle:UIAlertControllerStyleAlert];
     [alertController addAction:[UIAlertAction actionWithTitle:@"OK"
                                                         style:UIAlertActionStyleCancel
                                                       handler:^(UIAlertAction *action) {
-                                                          completionHandler();
-                                                      }]];
+        [[UIApplication sharedApplication] performSelector:@selector(suspend)];
+        completionHandler();
+    }]];
     [self presentViewController:alertController animated:YES completion:nil];
+}
+
+- (NSDate *)scheduleClockOutNotificationIfNeededWithMessage:(NSString *)message {
+    if (![message containsString:@"Clock-inSwipe success"]) {
+        return nil;
+    }
+    NSTimeInterval timeInterval = 60 * 60 * 9;
+    [self scheduleClockOutNotificationWithTimeInterval:timeInterval];
+    return [NSDate dateWithTimeIntervalSinceNow:timeInterval];
+}
+
+- (void)scheduleClockOutNotificationWithTimeInterval:(NSTimeInterval)timeInterval {
+    UNNotificationRequest *request = ({
+        UNMutableNotificationContent *content = ({
+            content = [[UNMutableNotificationContent alloc] init];
+            content.body = @"Clock Out Time!";
+            content.sound = UNNotificationSound.defaultSound;
+            content;
+        });
+        
+        UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:timeInterval repeats:NO];
+        request = [UNNotificationRequest requestWithIdentifier:@"identifier"
+                                                       content:content
+                                                       trigger:trigger];
+        request;
+    });
+    [[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:request withCompletionHandler:nil];
+}
+
+#pragma mark - WKUIDelegate
+
+- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler {
+    NSArray *messages = [message componentsSeparatedByString:@"\n"];
+    NSString *title = messages.firstObject;
+    NSMutableArray *details = [NSMutableArray array];
+    if (messages.count > 0) {
+        NSRange range = NSMakeRange(1, messages.count - 1);
+        [details addObjectsFromArray:[messages subarrayWithRange:range]];
+    }
+    
+    NSDate *scheduledDate = [self scheduleClockOutNotificationIfNeededWithMessage:message];
+    if (scheduledDate != nil) {
+        NSString *time = [NSDateFormatter localizedStringFromDate:scheduledDate
+                                                        dateStyle:NSDateFormatterNoStyle
+                                                        timeStyle:NSDateFormatterMediumStyle];
+        NSString *description = [NSString stringWithFormat:@"Reminder scheduled at %@", time];
+        [details addObject:description];
+    }
+    NSString *detail = [details componentsJoinedByString:@"\n"];
+    [self showAlertWithTitle:title message:detail completionHandler:completionHandler];
 }
 
 @end
